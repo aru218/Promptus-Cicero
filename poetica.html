@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poem Prompt Generator</title>
+    <style>
+    body {
+    background-color: #874444;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+}
+
+.container {
+    background-color: #FF8A8A;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 15px;
+    width: 60%;
+    max-width: 600px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+button {
+    background-color: #FFFFFF;
+    color: #874444;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.prompt-box {
+    background-color: #FFB3B3;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+h1 {
+    text-align: center;
+}
+
+h3 {
+    margin: 10px 0;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Promptus Cicero</h1>
+        <p style="background-color: #87444450;">Lorem Ipsum Dolor...just kidding!<br>Promtus Cicero, inspired by the writer of "Lorem Ipsum," is a versatile prompt generator for poetry. Just as Cicero’s text became a filler for design, Promtus Cicero fills creative gaps, offering challenging prompts that spark imagination. Perfect for poets, it provides the starting point for crafting unique literary works.<br>Joke - We are providing a prompt creator as the person who came up with this prompt didn't know what to put so he just put holding text! <br>[just a joke! great prompt btw]</p>
+        <button onclick="generate_poem()">Generate Prompt for Poem</button>
+         <div class="prompt-box">
+             <h3><u>Theme:</u> <b id="theme" style="background-color: #87444450;"></b></h3>
+             <h3><u>Poetic Devices:</u> <b id="devices" style="background-color: #87444450;"></b></h3>
+             <h3><u>Emotion:</u> <b id="emotion" style="background-color: #87444450;"></b></h3>
+             <h3><u>Target Audience:</u> <b id="audience" style="background-color: #87444450;"></b></h3>
+             <h3><u>Number of lines in Stanza:</u> <b id="lines" style="background-color: #87444450;"></b></h3>
+         </div>
+    </div>
+</body>
+<script>
+function shuffle(array) {
+    for (var i = array.length - 1; i > 0; i--) { 
+   
+        // Generate random number 
+        var j = Math.floor(Math.random() * (i + 1));
+                   
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+       
+ }
+
+ function generate_poem(){
+    let theme = [
+    "Love and Romance",
+    "Nature and Seasons",
+    "Life and Death",
+    "Time and Transience",
+    "Identity and Self-Discovery",
+    "Dreams and Imagination",
+    "Loss and Grief",
+    "Friendship and Companionship",
+    "War and Peace",
+    "Loneliness and Isolation",
+    "Hope and Despair",
+    "Courage and Heroism",
+    "Memory and Nostalgia",
+    "Beauty and Art",
+    "Freedom and Confinement",
+    "Spirituality and Faith",
+    "Growth and Change",
+    "Injustice and Struggle",
+    "Childhood and Innocence",
+    "Regret and Redemption",
+    "Truth and Lies",
+    "Joy and Celebration",
+    "The Passage of Time",
+    "Fate and Free Will",
+    "Adventure and Exploration",
+    "Family and Heritage",
+    "Ambition and Desire",
+    "Fear and Anxiety",
+    "Rebellion and Conformity",
+    "Survival and Resilience"
+];
+    let devices = ["Alliteration",      // Repetition of consonant sounds at the beginning of words
+    "Assonance",         // Repetition of vowel sounds within words
+    "Metaphor",          // A direct comparison between two unlike things
+    "Simile",            // A comparison between two unlike things using "like" or "as"
+    "Personification",   // Attributing human traits to non-human entities
+    "Imagery",           // Descriptive language that appeals to the senses
+    "Onomatopoeia",      // Words that imitate natural sounds
+    "Hyperbole",         // Exaggeration for emphasis or effect
+    "Oxymoron",          // A combination of contradictory terms
+    "Symbolism",         // Using symbols to represent ideas or concepts
+    "Repetition",        // Repeating words or phrases for emphasis
+    "Enjambment",        // A continuation of a sentence without a pause beyond the end of a line
+    "Irony",             // A contrast between expectation and reality
+    "Rhyme",             // The similarity of sounds at the end of lines
+    "Rhyme Scheme",      // The pattern of rhymes in a poem
+    "Allusion",          // A reference to another work of literature, person, or event
+    "Meter",             // The rhythmic structure of verses
+    "Stanza",            // A grouped set of lines in a poem
+    "Cacophony",         // A harsh, discordant mixture of sounds
+    "Euphony"           // Pleasant, harmonious sounds
+];
+    let emotion = [
+    "Joyful",        // Expressing happiness or delight
+    "Melancholic",   // Conveying sadness or sorrow
+    "Romantic",      // Evoking feelings of love and passion
+    "Nostalgic",     // Reflecting on the past with longing
+    "Hopeful",       // Filled with optimism or anticipation
+    "Angry",         // Expressing rage, frustration, or rebellion
+    "Humorous",      // Intended to amuse or entertain
+    "Lonely",        // Reflecting feelings of isolation
+    "Fearful",       // Conveying anxiety, dread, or terror
+    "Sarcastic",     // Using irony to mock or convey contempt
+    "Grateful",      // Expressing appreciation or thankfulness
+    "Bitter",        // Showing resentment or deep disappointment
+    "Reflective",    // Thoughtful and contemplative
+    "Content",       // Expressing peace and satisfaction
+    "Passionate",    // Showing intense emotion or enthusiasm
+    "Anxious",       // Conveying nervousness or unease
+    "Peaceful",      // Evoking calmness and tranquility
+    "Conflicted",    // Showing internal struggle or indecision
+    "Triumphant",    // Expressing victory or achievement
+    "Despairing",    // Feeling or conveying hopelessness
+    "Playful",       // Lighthearted and carefree
+    "Rebellious",    // Expressing defiance or resistance
+    "Curious",       // Showing a desire to explore or learn
+    "Mournful",      // Expressing grief or lamentation
+    "Awestruck",     // Filled with wonder or amazement
+]
+    let audience = [
+    "Toddlers",          // Very young children, simple and fun themes
+    "Children",          // Engaging and imaginative themes, often rhyming
+    "Teens",             // Relatable, emotional, and often introspective themes
+    "Young Adults",      // Exploring complex emotions and life changes
+    "Adults",            // Deeper, reflective, and often more serious themes
+    "Parents",           // Themes about family, love, and parenting
+    "Elderly",           // Reflecting on life, legacy, and wisdom
+    "Romantic Partners", // Themes of love, affection, and connection
+    "Nature Enthusiasts",// Poems about nature, environmental beauty, and conservation
+    "Poetry Enthusiasts",// Audiences familiar with poetic forms and literary devices
+    "Students",          // Educational or didactic poems, often with lessons
+    "Philosophers",      // Poems exploring deep thoughts, existential questions, and life philosophy
+    "Activists",         // Poems with social justice themes, rebellion, or calls for change
+    "Friends",           // Fun, light-hearted, or celebratory poems about friendship
+    "Grieving Individuals", // Poems offering comfort, solace, or healing during times of loss
+    "Spiritual Seekers", // Poems exploring spirituality, faith, and existential questions
+    "Artists",           // Themes about creativity, imagination, and inspiration
+    "Comedians",         // Humorous, witty, or satirical poems
+    "Historians",        // Poems that reflect historical themes, past events, or legacies
+    "Adventure Lovers"   // Poems about exploration, thrill, and travel
+];
+    let lines = Math.floor((Math.random() * 7)) + 2
+    shuffle(theme);
+    document.getElementById("theme").innerHTML = theme[0]
+    shuffle(devices);
+    document.getElementById("devices").innerHTML = devices[0]+ ", "  + devices[1] + ", " + devices[2]
+    shuffle(emotion);
+    document.getElementById("emotion").innerHTML = emotion[0]
+    shuffle(audience);
+    document.getElementById("audience").innerHTML = audience[0]
+    document.getElementById("lines").innerHTML = lines
+}
+</script>
+</html>
